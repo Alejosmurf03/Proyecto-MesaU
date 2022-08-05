@@ -49,6 +49,34 @@
   box-shadow: inset -10px 0px 0px 0px #DCC6E0;
 }
 
+.text-asignada {
+  color: #6bb9f0 !important;
+}
+
+.fieldset-d {
+  border: 1px solid #e6e6e6;
+  margin: 0px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.input-nota {
+  height: 100px !important;
+  border: solid 1px #e6e6e6 !important;
+  padding: 8px !important;
+  outline: none !important;
+  resize: none !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
+  background-color: #FFF !important;
+}
+
+.descripcion {
+  height: 300px;
+  overflow: auto;
+}
+
 :root {
   --falcon-blue: #2c7be5;
   --falcon-indigo: #727cf5;
