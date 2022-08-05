@@ -62,7 +62,7 @@
 }
 
 .input-nota {
-  height: 100px !important;
+  height: 80px !important;
   border: solid 1px #e6e6e6 !important;
   padding: 8px !important;
   outline: none !important;
@@ -8311,6 +8311,7 @@ fieldset:disabled .tox .tox-dialog__footer .tox-button--secondary,
 }
 
 .accordion-body {
+  border-top: 1px solid #e6e6e6;
   padding: 1rem 1.25rem;
 }
 
