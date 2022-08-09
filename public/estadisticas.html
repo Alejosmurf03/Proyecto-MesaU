@@ -215,13 +215,17 @@
 								<div class="input-group input-group-sm">
 									<select class="form-select" name="tipo_busqueda" id="tipo_busqueda" required>
 										<option value="" selected>Seleccionar un filtro</option>
-										<option value="usuario_id">Pagina</option>
-										<option value="nombre">Software</option>
-										<option value="correo">Hardware</option>
+										<option value="pagina">Pagina</option>
+										<option value="paginar">Requerimientos pagina</option>
+										<option value="software">Software</option>
+										<option value="hardware">Hardware</option>
+										<option value="consultas">Consultas paginas</option>
+										<option value="soporte1">Soporte nivel 1</option>
+										<option value="soporte2">Soporte nivel 2</option>
+										<option value="soporte3">Soporte nivel 3</option>
 									</select>
-									<input class="form-control search-input fuzzy-search" type="search"
-										placeholder="Filtrar" aria-label="Search" />
-									<button class="btn btn-outline-primary btn-sm" type="button">Filtrar</button>
+									<button class="btn btn-outline-primary btn-sm" type="button"
+										onclick="filtrar()">Filtrar</button>
 								</div>
 							</form>
 						</div>
@@ -247,148 +251,177 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12 col-xxl-12 mt-3">
-					<div class="card h-100" id="table"
-						data-list='{"valueNames":["path","views","time","exitRate"],"page":8,"pagination":true,"fallback":"pages-table-fallback"}'>
+				<div class="col-lg-12 col-xxl-12 mt-3 d-none" id="filtro">
+					<div class="card h-100" id="table">
 						<div class="card-body px-0 py-0">
 							<div class="table-responsive scrollbar">
-								<table class="table fs--1 mb-0 overflow-hidden">
+								<table class="table fs--1 mb-0 table-hover">
 									<thead class="bg-200 text-900">
 										<tr>
-											<th class="sort pe-1 align-middle white-space-nowrap" data-sort="path">Page
-												Path</th>
+											<th class="sort pe-1 align-middle white-space-nowrap" data-sort="proyecto">
+												Proyecto</th>
 											<th class="sort pe-1 align-middle white-space-nowrap text-end"
-												data-sort="views">Page Views</th>
+												data-sort="abriertos">Abiertos</th>
 											<th class="sort pe-1 align-middle white-space-nowrap text-end"
-												data-sort="time">Avg Time on Page</th>
+												data-sort="cerrados">Cerrados</th>
 											<th class="sort pe-card align-middle white-space-nowrap text-end"
-												data-sort="exitRate">Exit Rate</th>
+												data-sort="total">Total</th>
 										</tr>
 									</thead>
 									<tbody class="list">
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/sparrow/landing-page</a></td>
-											<td class="align-middle white-space-nowrap views text-end">1455</td>
-											<td class="align-middle white-space-nowrap time text-end">2m:25s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">20.4%</td>
+											<td class="align-middle white-space-nowrap proyecto">Pagina</td>
+											<td class="align-middle white-space-nowrap abiertos text-end">623</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1455</td>
+											<td class="align-middle text-end total text-end pe-card">2078</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/falcon/pages/starter.html</a></td>
-											<td class="align-middle white-space-nowrap views text-end">1422</td>
-											<td class="align-middle white-space-nowrap time text-end">2m:14s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">52.4%</td>
+											<td class="align-middle white-space-nowrap proyecto">Requerimientos pagina
+											</td>
+											<td class="align-middle white-space-nowrap abiertos text-end">623</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1055</td>
+											<td class="align-middle text-end total text-end pe-card">1678</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a class="fw-semi-bold"
-													href="#!">/pages/falcon-webapp-theme</a></td>
-											<td class="align-middle white-space-nowrap views text-end">1378</td>
-											<td class="align-middle white-space-nowrap time text-end">2m:23s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">25.1%</td>
+											<td class="align-middle white-space-nowrap proyecto">Software</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">132</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1422</td>
+											<td class="align-middle text-end total text-end pe-card">1554</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/product/sparrow-bootstrap-theme</a></td>
-											<td class="align-middle white-space-nowrap views text-end">1144</td>
-											<td class="align-middle white-space-nowrap time text-end">2m:2s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">6.3%</td>
+											<td class="align-middle white-space-nowrap proyecto">Hardware</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">124</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1378</td>
+											<td class="align-middle text-end total text-end pe-card">1502</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/themes/falcon/components</a></td>
-											<td class="align-middle white-space-nowrap views text-end">11047</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:16s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">49.3%</td>
+											<td class="align-middle white-space-nowrap proyecto">Consultas Paginas</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">45</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1144</td>
+											<td class="align-middle text-end total text-end pe-card">1189</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/themewagon.com/themes/free-website-template</a></td>
-											<td class="align-middle white-space-nowrap views text-end">1007</td>
-											<td class="align-middle white-space-nowrap time text-end">0m:34s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">35.9%</td>
+											<td class="align-middle white-space-nowrap proyecto">Soporte nivel 1</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">124</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">11047</td>
+											<td class="align-middle text-end total text-end pe-card">11171</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/mailbluster.com/about</a></td>
-											<td class="align-middle white-space-nowrap views text-end">997</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:5s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">87.3%</td>
+											<td class="align-middle white-space-nowrap proyecto">Soporte nivel 2</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">120</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1007</td>
+											<td class="align-middle text-end total text-end pe-card">1127</td>
 										</tr>
 										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/technext.it/services</a></td>
-											<td class="align-middle white-space-nowrap views text-end">983</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:16s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">74.3%</td>
-										</tr>
-										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/themewagon.com/themes/free-website-template</a></td>
-											<td class="align-middle white-space-nowrap views text-end">971</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:06s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">49.3%</td>
-										</tr>
-										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/blog/mailbluster-vs-sendy</a></td>
-											<td class="align-middle white-space-nowrap views text-end">996</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:26s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">4.3%</td>
-										</tr>
-										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/blog/mailbluster-vs-emailoctopus</a></td>
-											<td class="align-middle white-space-nowrap views text-end">890</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:19s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">49.3%</td>
-										</tr>
-										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/themewagon.com/themes/bootstrap-template</a></td>
-											<td class="align-middle white-space-nowrap views text-end">11047</td>
-											<td class="align-middle white-space-nowrap time text-end">1m:16s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">21.5%</td>
-										</tr>
-										<tr class="btn-reveal-trigger">
-											<td class="align-middle white-space-nowrap path"><a
-													class="text-primary fw-semi-bold"
-													href="#!">/themewagon.com/themes/free-website-template</a></td>
-											<td class="align-middle white-space-nowrap views text-end">11047</td>
-											<td class="align-middle white-space-nowrap time text-end">0m:54s</td>
-											<td class="align-middle text-end exitRate text-end pe-card">62.5%</td>
+											<td class="align-middle white-space-nowrap proyecto">Soporte nivel 3</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">123</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">997</td>
+											<td class="align-middle text-end total text-end pe-card">1120</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-							<div class="text-center d-none" id="pages-table-fallback">
-								<p class="fw-bold fs-1 mt-3">No Page found</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-xxl-12 mt-3 d-none" id="filtro2">
+					<div class="card h-100" id="table">
+						<div class="card-body px-0 py-0">
+							<div class="table-responsive scrollbar">
+								<table class="table fs--1 mb-0 overflow-hidden table-hover">
+									<thead class="bg-200 text-900">
+										<tr>
+											<th class="sort pe-1 align-middle white-space-nowrap" data-sort="proyecto">
+												Severidad</th>
+											<th class="sort pe-1 align-middle white-space-nowrap text-end"
+												data-sort="abriertos">Abiertos</th>
+											<th class="sort pe-1 align-middle white-space-nowrap text-end"
+												data-sort="cerrados">Cerrados</th>
+											<th class="sort pe-card align-middle white-space-nowrap text-end"
+												data-sort="total">Total</th>
+										</tr>
+									</thead>
+									<tbody class="list">
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Inmediata</td>
+											<td class="align-middle white-space-nowrap abiertos text-end">623</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1455</td>
+											<td class="align-middle text-end total text-end pe-card">2078</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Urgente</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">132</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1422</td>
+											<td class="align-middle text-end total text-end pe-card">1554</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Normal</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">124</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1378</td>
+											<td class="align-middle text-end total text-end pe-card">1502</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Baja</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">45</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1144</td>
+											<td class="align-middle text-end total text-end pe-card">1189</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
-						<div class="card-footer">
-							<div class="row align-items-center">
-								<div class="pagination d-none"></div>
-								<div class="col">
-									<p class="mb-0 fs--1"><span class="d-none d-sm-inline-block me-2"
-											data-list-info="data-list-info"></span></p>
-								</div>
-								<div class="col-auto d-flex">
-									<button class="btn btn-sm btn-primary" type="button"
-										data-list-pagination="prev"><span>Previous</span></button>
-									<button class="btn btn-sm btn-primary px-4 ms-2" type="button"
-										data-list-pagination="next"><span>Next</span></button>
-								</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-xxl-12 mt-3 d-none" id="filtro3">
+					<div class="card h-100" id="table">
+						<div class="card-body px-0 py-0">
+							<div class="table-responsive scrollbar">
+								<table class="table fs--1 mb-0 overflow-hidden table-hover">
+									<thead class="bg-200 text-900">
+										<tr>
+											<th class="sort pe-1 align-middle white-space-nowrap" data-sort="proyecto">
+												Usuario</th>
+											<th class="sort pe-1 align-middle white-space-nowrap text-end"
+												data-sort="abriertos">Abiertos</th>
+											<th class="sort pe-1 align-middle white-space-nowrap text-end"
+												data-sort="cerrados">Cerrados</th>
+											<th class="sort pe-card align-middle white-space-nowrap text-end"
+												data-sort="total">Total</th>
+										</tr>
+									</thead>
+									<tbody class="list">
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Sin asignar</td>
+											<td class="align-middle white-space-nowrap abiertos text-end">623</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1455</td>
+											<td class="align-middle text-end total text-end pe-card">2078</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Manuel Vega</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">136</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1522</td>
+											<td class="align-middle text-end total text-end pe-card">1658</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Nubia Roa</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">132</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1422</td>
+											<td class="align-middle text-end total text-end pe-card">1554</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Tatiana Rincon</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">124</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1378</td>
+											<td class="align-middle text-end total text-end pe-card">1502</td>
+										</tr>
+										<tr class="btn-reveal-trigger">
+											<td class="align-middle white-space-nowrap proyecto">Yeison Murrillo</td>
+											<td class="align-middle white-space-nowrap abriertos text-end">45</td>
+											<td class="align-middle white-space-nowrap cerrados text-end">1144</td>
+											<td class="align-middle text-end total text-end pe-card">1189</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -425,7 +458,16 @@
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 	<script src="vendors/list.js/list.min.js"></script>
 	<script src="assets/js/theme.js"></script>
-
+	<script>
+		function filtrar() {
+			var filtro = document.getElementById("filtro");
+			var filtro2 = document.getElementById("filtro2");
+			var filtro3 = document.getElementById("filtro3");
+			filtro.classList.remove("d-none");
+			filtro2.classList.remove("d-none");
+			filtro3.classList.remove("d-none");
+		}
+	</script>
 </body>
 
 </html>
