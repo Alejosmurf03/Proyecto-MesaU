@@ -113,27 +113,28 @@
 											class="nav-link-text ps-1">Casos</span>
 									</div>
 								</a>
-								<!-- parent pages--><a class="nav-link" href="estadisticas.html" role="button" data-bs-toggle=""
-									aria-expanded="false">
+								<!-- parent pages--><a class="nav-link" href="estadisticas.html" role="button"
+									data-bs-toggle="" aria-expanded="false">
 									<div class="d-flex align-items-center"><span class="nav-link-icon"><span
 												class="fas fa-chart-bar"></span></span><span
 											class="nav-link-text ps-1">Estadisticas</span>
 									</div>
 								</a>
-								<!-- parent pages--><a class="nav-link" href="ver_solicitudes.html" role="button" data-bs-toggle=""
-									aria-expanded="false">
+								<!-- parent pages--><a class="nav-link" href="ver_solicitudes.html" role="button"
+									data-bs-toggle="" aria-expanded="false">
 									<div class="d-flex align-items-center"><span class="nav-link-icon"><span
 												class="fas fa-copy"></span></span><span class="nav-link-text ps-1">Ver
 											Solicitudes</span>
 									</div>
 								</a>
-								<!-- parent pages--><a class="nav-link" href="#" role="button" data-bs-toggle=""
-									aria-expanded="false">
+								<!-- parent pages--><a class="nav-link" type="button" data-bs-toggle="modal"
+									data-bs-target="#authentication-modal">
 									<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-												class="fas fa-cogs"></span></span><span
-											class="nav-link-text ps-1">Administracion</span>
+												class="fas fa-file-medical"></span></span><span
+											class="nav-link-text ps-1">Crear Caso</span>
 									</div>
 								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -416,6 +417,71 @@
 					</div>
 				</div>
 			</footer>
+			<div class="modal fade" id="authentication-modal" role="dialog" aria-labelledby="authentication-modal-label"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg mt-4" role="document">
+					<div class="modal-content border-0">
+						<div class="modal-header px-5 position-relative justify-content-center">
+							<div class="position-relative z-index-1 light">
+								<img class="me-2" src="assets/img/LitiImagenes/Logo.png" alt="" width="120" />
+							</div>
+							<button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
+								data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body py-4 px-5">
+							<form>
+								<div class="row">
+									<div class="mb-3">
+										<label class="form-label" for="modal-auth-name">Categoria</label>
+										<select class="form-select" name="tipo_busqueda" id="tipo_busqueda" required>
+											<option value="" selected>Seleccionar un filtro</option>
+											<option value="pagina">Pagina</option>
+											<option value="paginar">Requerimientos pagina</option>
+											<option value="software">Software</option>
+											<option value="hardware">Hardware</option>
+											<option value="consultas">Consultas paginas</option>
+											<option value="soporte1">Soporte nivel 1</option>
+											<option value="soporte2">Soporte nivel 2</option>
+											<option value="soporte3">Soporte nivel 3</option>
+										</select>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="modal-auth-email">Area</label>
+										<select class="form-select" name="tipo_busqueda" id="tipo_busqueda" required>
+											<option value="" selected>Seleccionar un filtro</option>
+											<option value="pagina">Sistemas</option>
+											<option value="paginar">Judicall</option>
+											<option value="software">Radicación</option>
+											<option value="hardware">Recursos Humanos</option>
+											<option value="consultas">Operaciones</option>
+										</select>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="modal-auth-password">Descripción</label>
+										<textarea class="form-control" name="desc-caso" id="desc-caso"
+											rows="5"></textarea>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="modal-auth-confirm-password">Anydesk</label>
+										<input class="form-control" type="text" autocomplete="off"
+											id="modal-telefono" />
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="modal-auth-confirm-password">Télefono de
+											contacto</label>
+										<input class="form-control" type="text" autocomplete="off"
+											id="modal-telefono" />
+									</div>
+									<div class="mb-3">
+										<button class="btn btn-primary d-block w-100 mt-3" type="submit"
+											name="submit">Crear caso</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 	<!-- ===============================================-->
